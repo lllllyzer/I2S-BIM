@@ -1,0 +1,36 @@
+Data Processing and Conversion Workflow
+
+1. **Semantic Reconstruction Data Format**
+
+The semantic reconstruction data should be stored in the following format: [X Y Z N], where:
+- `X`, `Y`, `Z` represent the 3D coordinates of the point cloud.
+- `N` represents the semantic label of each point.
+
+This data will be stored in the `../data/LGS` directory. For example, the data file may look like:
+1.07158399 22.66036606 5.68255043 7.000000
+1.07167125 22.66053391 5.66655016 7.000000
+1.12368345 22.37652206 5.82043314 7.000000
+1.12567949 22.37694550 5.63874197 7.000000
+
+
+2. **Data Extraction and Conversion**
+
+Next, run `P2BIM.exe` and select the `pcd2txt` option to convert the semantic reconstruction point cloud data into the desired format. The output data format will be [n ox oy oz xsize ysize zsize 0], where:
+- `n`: Point number.
+- `ox`, `oy`, `oz`: The starting point coordinates of the structure.
+- `xsize`, `ysize`, `zsize`: The dimensions of the structure.
+- `0`: An additional field, typically a constant value.
+
+These extracted data will be saved in the `../data/FE` directory. For example, the converted data may look like:
+5 -1.15252 12.37189 1.42410 2.35555 39.53292 0.05500 0
+2 -0.21638 30.78683 -1.05760 0.24166 1.32582 2.47290 0
+2 -2.20605 -5.07764 -1.05020 0.42638 1.56082 2.18880 0
+2 -2.16974 -2.98868 -1.00980 0.30789 1.06127 2.14710 0
+
+
+3. **BIM Model Generation**
+
+Finally, run `P2BIM.exe` again and select the `txt2bim` option to convert the extracted data into the BIM format. The generated IFC-format BIM model will be saved in the `../BIM` directory.
+
+For example, the output BIM file might look like:
+building.ifc
